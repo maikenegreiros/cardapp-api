@@ -19,9 +19,6 @@ class OnlineOrderTest extends TestCase {
 
     public function testOrderInstance()
     {
-        $name = $this->createStub(Name::class);
-        $address = $this->createStub(Address::class);
-
         $destiny = $this->createStub(Delivery::class);
         $requester = $this->createStub(OnlineClient::class);
         $client = $this->createStub(Client::class);
@@ -34,9 +31,6 @@ class OnlineOrderTest extends TestCase {
 
     public function testAddItem()
     {
-        $name = $this->createStub(Name::class);
-        $address = $this->createStub(Address::class);
-
         $destiny = $this->createStub(Delivery::class);
         $requester = $this->createStub(OnlineClient::class);
         $client = $this->createStub(Client::class);
@@ -57,9 +51,6 @@ class OnlineOrderTest extends TestCase {
 
     public function testGetDestiny()
     {
-        $name = $this->createStub(Name::class);
-        $address = $this->createStub(Address::class);
-
         $destiny = $this->createStub(Delivery::class);
         $requester = $this->createStub(OnlineClient::class);
         $client = $this->createStub(Client::class);
@@ -72,9 +63,6 @@ class OnlineOrderTest extends TestCase {
 
     public function testGetRequester()
     {
-        $name = $this->createStub(Name::class);
-        $address = $this->createStub(Address::class);
-
         $destiny = $this->createStub(Delivery::class);
         $requester = $this->createStub(OnlineClient::class);
         $client = $this->createStub(Client::class);
@@ -87,9 +75,6 @@ class OnlineOrderTest extends TestCase {
 
     public function testGetDateTime()
     {
-        $name = $this->createStub(Name::class);
-        $address = $this->createStub(Address::class);
-
         $destiny = $this->createStub(Delivery::class);
         $requester = $this->createStub(OnlineClient::class);
         $client = $this->createStub(Client::class);
@@ -105,9 +90,6 @@ class OnlineOrderTest extends TestCase {
 
     public function testGetClient()
     {
-        $name = $this->createStub(Name::class);
-        $address = $this->createStub(Address::class);
-
         $destiny = $this->createStub(Delivery::class);
         $requester = $this->createStub(OnlineClient::class);
         $client = $this->createStub(Client::class);
@@ -121,8 +103,6 @@ class OnlineOrderTest extends TestCase {
     public function testRequiredClient()
     {
         $this->expectException(\ArgumentCountError::class);
-        $name = $this->createStub(Name::class);
-        $address = $this->createStub(Address::class);
 
         $destiny = $this->createStub(Delivery::class);
         $requester = $this->createStub(OnlineClient::class);
