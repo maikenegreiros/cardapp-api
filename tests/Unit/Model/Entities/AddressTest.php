@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Domains\Order\Entities;
+namespace Tests\Unit\Model\Entities;
 
 use PHPUnit\Framework\TestCase;
 use Model\Entities\Address;
