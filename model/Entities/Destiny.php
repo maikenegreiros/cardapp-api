@@ -9,8 +9,8 @@ class Destiny {
         $this->client = $client;
     }
 
-    public function getLocation(): string
+    public function getAddress(): string
     {
-        return $this->client->getAddress()->getFullAddress();
+        return $this->client->getAddress();
     }
 }

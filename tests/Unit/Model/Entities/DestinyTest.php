@@ -8,7 +8,7 @@ use Model\Entities\Destiny;
 
 class DestinyTest extends TestCase
 {
-    public function testGetLocation()
+    public function testGetAddress()
     {
         $fullAddress = 'Rua Maravilha, 96 - Centro';
         $address = $this->createStub(Address::class);
@@ -18,6 +18,6 @@ class DestinyTest extends TestCase
         $client->method('getAddress')->willReturn($address);
 
         $destiny = new Destiny($client);
-        $this->assertEquals($address->getFullAddress(), $destiny->getLocation());
+        $this->assertEquals($address, $destiny->getAddress());
     }
 }
