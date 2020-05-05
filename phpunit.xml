@@ -11,9 +11,12 @@
             <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
+    <logging>
+        <log type="coverage-html" target="report"></log>
+    </logging>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">./domain</directory>
         </whitelist>
     </filter>
     <php>
