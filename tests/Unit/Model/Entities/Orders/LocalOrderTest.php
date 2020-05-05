@@ -4,12 +4,9 @@ namespace Tests\Unit\Model\Entities\Orders;
 use PHPUnit\Framework\TestCase;
 use Model\Entities\Orders\LocalOrder;
 use Model\Entities\Orders\Order;
-use Model\Entities\Name;
-use Model\Entities\Address;
 use Model\Entities\Table;
 use Model\Entities\Staff;
 use Model\Entities\Client;
-use Model\Entities\Items\Collection as ItemsCollection;
 use Model\Entities\Items\Item;
 use DateTime;
 

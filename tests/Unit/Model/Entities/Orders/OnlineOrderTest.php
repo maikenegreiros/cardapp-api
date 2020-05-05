@@ -4,11 +4,8 @@ namespace Tests\Unit\Model\Entities\Orders;
 use PHPUnit\Framework\TestCase;
 use Model\Entities\Orders\OnlineOrder;
 use Model\Entities\Orders\Order;
-use Model\Entities\Name;
-use Model\Entities\Address;
 use Model\Entities\Destiny;
 use Model\Entities\Client;
-use Model\Entities\Items\Collection as ItemsCollection;
 use Model\Entities\Items\Item;
 use DateTime;
 
@@ -18,9 +15,9 @@ class OnlineOrderTest extends TestCase {
     {
         $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
-        $datetime = new DateTime;
+        $opentime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $datetime, $client);
+        $order = new OnlineOrder($destiny, $opentime, $client);
 
         $this->assertTrue($order instanceof Order);
     }
@@ -29,9 +26,9 @@ class OnlineOrderTest extends TestCase {
     {
         $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
-        $datetime = new DateTime;
+        $opentime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $datetime, $client);
+        $order = new OnlineOrder($destiny, $opentime, $client);
 
         $item1 = $this->createStub(Item::class);
         $item2 = $this->createStub(Item::class);
@@ -48,25 +45,42 @@ class OnlineOrderTest extends TestCase {
     {
         $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
-        $datetime = new DateTime;
+        $opentime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $datetime, $client);
+        $order = new OnlineOrder($destiny, $opentime, $client);
 
         $this->assertEquals($destiny, $order->getDestiny());
     }
 
 
-    public function testGetDateTime()
+    public function testGetOpenTime()
     {
         $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
-        $datetime = new DateTime;
+        $opentime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $datetime, $client);
+        $order = new OnlineOrder($destiny, $opentime, $client);
 
         $this->assertEquals(
-            $datetime->format('Y-m-d H:i:s'),
-            $order->getDateTime()->format('Y-m-d H:i:s')
+            $opentime->format('Y-m-d H:i:s'),
+            $order->getOpenTime()->format('Y-m-d H:i:s')
+        );
+    }
+
+    public function testGetCloseTime()
+    {
+        $destiny = $this->createStub(Destiny::class);
+        $client = $this->createStub(Client::class);
+        $opentime = new DateTime;
+
+        $order = new OnlineOrder($destiny, $opentime, $client);
+
+        $closetime = new DateTime;
+        $order->setCloseTime($closetime);
+
+        $this->assertEquals(
+            $closetime->format('Y-m-d H:i:s'),
+            $order->getCloseTime()->format('Y-m-d H:i:s')
         );
     }
 
@@ -74,9 +88,9 @@ class OnlineOrderTest extends TestCase {
     {
         $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
-        $datetime = new DateTime;
+        $opentime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $datetime, $client);
+        $order = new OnlineOrder($destiny, $opentime, $client);
 
         $this->assertEquals($client, $order->getClient());
     }
@@ -86,8 +100,8 @@ class OnlineOrderTest extends TestCase {
         $this->expectException(\ArgumentCountError::class);
 
         $destiny = $this->createStub(Destiny::class);
-        $datetime = new DateTime;
+        $opentime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $datetime);
+        $order = new OnlineOrder($destiny, $opentime);
     }
 }

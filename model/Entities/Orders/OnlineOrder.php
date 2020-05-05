@@ -10,16 +10,17 @@ use DateTime;
 class OnlineOrder implements Order {
     private ItemsCollection $items;
     private Destiny $destiny;
-    private DateTime $datetime;
+    private DateTime $openTime;
+    private DateTime $closeTime;
     private Client $client;
 
     public function __construct(
         Destiny $destiny,
-        DateTime $datetime,
+        DateTime $openTime,
         Client $client
     ) {
         $this->destiny = $destiny;
-        $this->datetime = $datetime;
+        $this->openTime = $openTime;
         $this->client = $client;
         $this->items = new ItemsCollection;
     }
@@ -33,11 +34,6 @@ class OnlineOrder implements Order {
     public function getDestiny(): Destiny
     {
         return $this->destiny;
-    }
-
-    public function getDateTime(): DateTime
-    {
-        return $this->datetime;
     }
 
     public function getOpenTime(): DateTime
