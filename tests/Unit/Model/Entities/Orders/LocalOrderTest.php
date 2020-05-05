@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Unit\Domains\Order\Entities;
+namespace Tests\Unit\Model\Entities\Orders;
 
 use PHPUnit\Framework\TestCase;
 use Model\Entities\Orders\LocalOrder;
