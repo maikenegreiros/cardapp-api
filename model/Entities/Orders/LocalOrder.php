@@ -4,26 +4,27 @@ namespace Model\Entities\Orders;
 use Model\Entities\Items\Collection as ItemsCollection;
 use Model\Entities\Items\Item;
 use Model\Entities\Client;
-use Model\Entities\Destiny\Destiny;
-use Model\Entities\Requesters\Requester;
+use Model\Entities\Table;
+use Model\Entities\Staff;
 use DateTime;
 
 class LocalOrder implements Order {
     private ItemsCollection $items;
-    private Destiny $destiny;
-    private Requester $requester;
-    private DateTime $datetime;
+    private Table $table;
+    private Staff $staff;
+    private DateTime $openTime;
+    private DateTime $closeTime;
     private ?Client $client;
 
     public function __construct(
-        Destiny $destiny,
-        Requester $requester,
-        DateTime $datetime,
+        Table $table,
+        Staff $staff,
+        DateTime $openTime,
         ?Client $client = null
     ) {
-        $this->destiny = $destiny;
-        $this->requester = $requester;
-        $this->datetime = $datetime;
+        $this->table = $table;
+        $this->staff = $staff;
+        $this->openTime = $openTime;
         $this->client = $client;
         $this->items = new ItemsCollection;
     }
@@ -34,19 +35,30 @@ class LocalOrder implements Order {
         return $this;
     }
 
-    public function getDestiny(): Destiny
+    public function getTable(): Table
     {
-        return $this->destiny;
+        return $this->table;
     }
 
-    public function getRequester(): Requester
+    public function getStaff(): Staff
     {
-        return $this->requester;
+        return $this->staff;
     }
 
-    public function getDateTime(): DateTime
+    public function getOpenTime(): DateTime
     {
-        return $this->datetime;
+        return $this->openTime;
+    }
+
+    public function getCloseTime(): DateTime
+    {
+        return $this->closeTime;
+    }
+
+    public function setCloseTime(DateTime $time): self
+    {
+        $this->closeTime = $time;
+        return $this;
     }
 
     public function getClient(): ?Client

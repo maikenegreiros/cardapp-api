@@ -1,10 +1,7 @@
 <?php
-namespace Model\Entities\Destiny;
+namespace Model\Entities;
 
-use Model\Entities\Client;
-
-class Delivery implements Destiny {
-
+class Destiny {
     private Client $client;
 
     public function __construct(Client $client)

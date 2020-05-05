@@ -4,25 +4,21 @@ namespace Model\Entities\Orders;
 use Model\Entities\Items\Collection as ItemsCollection;
 use Model\Entities\Items\Item;
 use Model\Entities\Client;
-use Model\Entities\Destiny\Destiny;
-use Model\Entities\Requesters\Requester;
+use Model\Entities\Destiny;
 use DateTime;
 
 class OnlineOrder implements Order {
     private ItemsCollection $items;
     private Destiny $destiny;
-    private Requester $requester;
     private DateTime $datetime;
     private Client $client;
 
     public function __construct(
         Destiny $destiny,
-        Requester $requester,
         DateTime $datetime,
         Client $client
     ) {
         $this->destiny = $destiny;
-        $this->requester = $requester;
         $this->datetime = $datetime;
         $this->client = $client;
         $this->items = new ItemsCollection;
@@ -39,14 +35,25 @@ class OnlineOrder implements Order {
         return $this->destiny;
     }
 
-    public function getRequester(): Requester
-    {
-        return $this->requester;
-    }
-
     public function getDateTime(): DateTime
     {
         return $this->datetime;
+    }
+
+    public function getOpenTime(): DateTime
+    {
+        return $this->openTime;
+    }
+
+    public function getCloseTime(): DateTime
+    {
+        return $this->closeTime;
+    }
+
+    public function setCloseTime(DateTime $time): self
+    {
+        $this->closeTime = $time;
+        return $this;
     }
 
     public function getClient(): Client

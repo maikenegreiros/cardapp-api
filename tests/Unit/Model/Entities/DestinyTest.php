@@ -1,21 +1,13 @@
 <?php
-namespace Tests\Unit\Model\Entities\Destiny;
+namespace Tests\Unit\Model\Entities;
 
 use PHPUnit\Framework\TestCase;
 use Model\Entities\Client;
 use Model\Entities\Address;
-use Model\Entities\Destiny\Destiny;
-use Model\Entities\Destiny\Delivery;
+use Model\Entities\Destiny;
 
-class DeliveryTest extends TestCase {
-
-    public function testInstance()
-    {
-        $client = $this->createStub(Client::class);
-        $destiny = new Delivery($client);
-        $this->assertTrue($destiny instanceof Destiny);
-    }
-
+class DestinyTest extends TestCase
+{
     public function testGetLocation()
     {
         $fullAddress = 'Rua Maravilha, 96 - Centro';
@@ -25,7 +17,7 @@ class DeliveryTest extends TestCase {
         $client = $this->createStub(Client::class);
         $client->method('getAddress')->willReturn($address);
 
-        $destiny = new Delivery($client);
+        $destiny = new Destiny($client);
         $this->assertEquals($address->getFullAddress(), $destiny->getLocation());
     }
 }

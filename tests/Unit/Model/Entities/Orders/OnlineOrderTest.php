@@ -6,10 +6,7 @@ use Model\Entities\Orders\OnlineOrder;
 use Model\Entities\Orders\Order;
 use Model\Entities\Name;
 use Model\Entities\Address;
-use Model\Entities\Destiny\Destiny;
-use Model\Entities\Destiny\Delivery;
-use Model\Entities\Requesters\Requester;
-use Model\Entities\Requesters\OnlineClient;
+use Model\Entities\Destiny;
 use Model\Entities\Client;
 use Model\Entities\Items\Collection as ItemsCollection;
 use Model\Entities\Items\Item;
@@ -19,24 +16,22 @@ class OnlineOrderTest extends TestCase {
 
     public function testOrderInstance()
     {
-        $destiny = $this->createStub(Delivery::class);
-        $requester = $this->createStub(OnlineClient::class);
+        $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $requester, $datetime, $client);
+        $order = new OnlineOrder($destiny, $datetime, $client);
 
         $this->assertTrue($order instanceof Order);
     }
 
     public function testAddItem()
     {
-        $destiny = $this->createStub(Delivery::class);
-        $requester = $this->createStub(OnlineClient::class);
+        $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $requester, $datetime, $client);
+        $order = new OnlineOrder($destiny, $datetime, $client);
 
         $item1 = $this->createStub(Item::class);
         $item2 = $this->createStub(Item::class);
@@ -51,36 +46,23 @@ class OnlineOrderTest extends TestCase {
 
     public function testGetDestiny()
     {
-        $destiny = $this->createStub(Delivery::class);
-        $requester = $this->createStub(OnlineClient::class);
+        $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $requester, $datetime, $client);
+        $order = new OnlineOrder($destiny, $datetime, $client);
 
         $this->assertEquals($destiny, $order->getDestiny());
     }
 
-    public function testGetRequester()
-    {
-        $destiny = $this->createStub(Delivery::class);
-        $requester = $this->createStub(OnlineClient::class);
-        $client = $this->createStub(Client::class);
-        $datetime = new DateTime;
-
-        $order = new OnlineOrder($destiny, $requester, $datetime, $client);
-
-        $this->assertEquals($requester, $order->getRequester());
-    }
 
     public function testGetDateTime()
     {
-        $destiny = $this->createStub(Delivery::class);
-        $requester = $this->createStub(OnlineClient::class);
+        $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $requester, $datetime, $client);
+        $order = new OnlineOrder($destiny, $datetime, $client);
 
         $this->assertEquals(
             $datetime->format('Y-m-d H:i:s'),
@@ -90,12 +72,11 @@ class OnlineOrderTest extends TestCase {
 
     public function testGetClient()
     {
-        $destiny = $this->createStub(Delivery::class);
-        $requester = $this->createStub(OnlineClient::class);
+        $destiny = $this->createStub(Destiny::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $requester, $datetime, $client);
+        $order = new OnlineOrder($destiny, $datetime, $client);
 
         $this->assertEquals($client, $order->getClient());
     }
@@ -104,10 +85,9 @@ class OnlineOrderTest extends TestCase {
     {
         $this->expectException(\ArgumentCountError::class);
 
-        $destiny = $this->createStub(Delivery::class);
-        $requester = $this->createStub(OnlineClient::class);
+        $destiny = $this->createStub(Destiny::class);
         $datetime = new DateTime;
 
-        $order = new OnlineOrder($destiny, $requester, $datetime);
+        $order = new OnlineOrder($destiny, $datetime);
     }
 }

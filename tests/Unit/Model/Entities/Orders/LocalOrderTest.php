@@ -6,10 +6,8 @@ use Model\Entities\Orders\LocalOrder;
 use Model\Entities\Orders\Order;
 use Model\Entities\Name;
 use Model\Entities\Address;
-use Model\Entities\Destiny\Destiny;
-use Model\Entities\Destiny\Table;
-use Model\Entities\Requesters\Requester;
-use Model\Entities\Requesters\Staff;
+use Model\Entities\Table;
+use Model\Entities\Staff;
 use Model\Entities\Client;
 use Model\Entities\Items\Collection as ItemsCollection;
 use Model\Entities\Items\Item;
@@ -19,24 +17,24 @@ class LocalOrderTest extends TestCase {
 
     public function testOrderInstance()
     {
-        $destiny = $this->createStub(Table::class);
-        $requester = $this->createStub(Staff::class);
+        $table = $this->createStub(Table::class);
+        $staff = $this->createStub(Staff::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new LocalOrder($destiny, $requester, $datetime, $client);
+        $order = new LocalOrder($table, $staff, $datetime, $client);
 
         $this->assertTrue($order instanceof Order);
     }
 
     public function testAddItem()
     {
-        $destiny = $this->createStub(Table::class);
-        $requester = $this->createStub(Staff::class);
+        $table = $this->createStub(Table::class);
+        $staff = $this->createStub(Staff::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new LocalOrder($destiny, $requester, $datetime, $client);
+        $order = new LocalOrder($table, $staff, $datetime, $client);
 
         $item1 = $this->createStub(Item::class);
         $item2 = $this->createStub(Item::class);
@@ -51,62 +49,80 @@ class LocalOrderTest extends TestCase {
 
     public function testGetDestiny()
     {
-        $destiny = $this->createStub(Table::class);
-        $requester = $this->createStub(Staff::class);
+        $table = $this->createStub(Table::class);
+        $staff = $this->createStub(Staff::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new LocalOrder($destiny, $requester, $datetime, $client);
+        $order = new LocalOrder($table, $staff, $datetime, $client);
 
-        $this->assertEquals($destiny, $order->getDestiny());
+        $this->assertEquals($table, $order->getTable());
     }
 
-    public function testGetRequester()
+    public function testGetStaff()
     {
-        $destiny = $this->createStub(Table::class);
-        $requester = $this->createStub(Staff::class);
+        $table = $this->createStub(Table::class);
+        $staff = $this->createStub(Staff::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new LocalOrder($destiny, $requester, $datetime, $client);
+        $order = new LocalOrder($table, $staff, $datetime, $client);
 
-        $this->assertEquals($requester, $order->getRequester());
+        $this->assertEquals($staff, $order->getStaff());
     }
 
-    public function testGetDateTime()
+    public function testGetOpenTime()
     {
-        $destiny = $this->createStub(Table::class);
-        $requester = $this->createStub(Staff::class);
+        $table = $this->createStub(Table::class);
+        $staff = $this->createStub(Staff::class);
         $client = $this->createStub(Client::class);
-        $datetime = new DateTime;
+        $openTime = new DateTime;
 
-        $order = new LocalOrder($destiny, $requester, $datetime, $client);
+        $order = new LocalOrder($table, $staff, $openTime, $client);
 
         $this->assertEquals(
-            $datetime->format('Y-m-d H:i:s'),
-            $order->getDateTime()->format('Y-m-d H:i:s')
+            $openTime->format('Y-m-d H:i:s'),
+            $order->getOpenTime()->format('Y-m-d H:i:s')
+        );
+    }
+
+    public function testGetCloseTime()
+    {
+        $table = $this->createStub(Table::class);
+        $staff = $this->createStub(Staff::class);
+        $client = $this->createStub(Client::class);
+        $openTime = new DateTime;
+
+        $order = new LocalOrder($table, $staff, $openTime, $client);
+
+        $closeTime = new DateTime;
+        $order->setCloseTime($closeTime);
+
+        $this->assertEquals(
+            $closeTime->format('Y-m-d H:i:s'),
+            $order->getCloseTime()->format('Y-m-d H:i:s')
         );
     }
 
     public function testGetClient()
     {
-        $destiny = $this->createStub(Table::class);
-        $requester = $this->createStub(Staff::class);
+        $table = $this->createStub(Table::class);
+        $staff = $this->createStub(Staff::class);
         $client = $this->createStub(Client::class);
         $datetime = new DateTime;
 
-        $order = new LocalOrder($destiny, $requester, $datetime, $client);
+        $order = new LocalOrder($table, $staff, $datetime, $client);
 
         $this->assertEquals($client, $order->getClient());
     }
 
     public function testOptionalClient()
     {
-        $destiny = $this->createStub(Table::class);
-        $requester = $this->createStub(Staff::class);
+        $table = $this->createStub(Table::class);
+        $staff = $this->createStub(Staff::class);
         $datetime = new DateTime;
 
-        $order = new LocalOrder($destiny, $requester, $datetime);
+        $order = new LocalOrder($table, $staff, $datetime);
 
         $this->assertEquals(null, $order->getClient());
     }

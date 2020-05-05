@@ -1,7 +1,7 @@
 <?php
-namespace Model\Entities\Destiny;
+namespace Model\Entities;
 
-class Table implements Destiny {
+class Table {
 
     private string $identifier;
 
@@ -10,7 +10,7 @@ class Table implements Destiny {
         $this->identifier = $identifier;
     }
 
-    public function getLocation(): string
+    public function getIdentifier(): string
     {
         return $this->identifier;
     }
