@@ -9,7 +9,7 @@ class TableTest extends TestCase {
 
     public function testInstance()
     {
-        $destiny = new Table($client);
+        $destiny = new Table("36");
         $this->assertTrue($destiny instanceof Destiny);
     }
 
