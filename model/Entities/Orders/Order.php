@@ -1,5 +1,5 @@
 <?php
-namespace Model\Entities;
+namespace Model\Entities\Orders;
 
 use Model\Entities\Items\Collection as ItemsCollection;
 use Model\Entities\Items\Item;

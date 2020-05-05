@@ -2,8 +2,8 @@
 namespace Tests\Unit\Domains\Order\Entities;
 
 use PHPUnit\Framework\TestCase;
-use Model\Entities\OnlineOrder;
-use Model\Entities\Order;
+use Model\Entities\Orders\OnlineOrder;
+use Model\Entities\Orders\Order;
 use Model\Entities\Name;
 use Model\Entities\Address;
 use Model\Entities\Destiny\Destiny;
